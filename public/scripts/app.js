@@ -78,47 +78,84 @@ var Products = function Products(props) {
     return React.createElement(
         'div',
         null,
-        Object.keys(props.data).map(function (product) {
-            return React.createElement(Product, {
-                key: product,
-                productName: product,
-                handleShowPrices: props.handleShowPrices
-            });
+        React.createElement(
+            'button',
+            { onClick: props.handleShowPrices },
+            Object.keys(props.data)[0]
+        ),
+        props.showPrices && Object.values(props.data)[0].map(function (price) {
+            return React.createElement(
+                'p',
+                { key: price },
+                price
+            );
         }),
-        Object.values(props.data).map(function (productValues) {
-            return productValues.map(function (productValue) {
-                return React.createElement(Value, {
-                    key: productValue,
-                    productValue: productValue,
-                    showPrices: props.showPrices
-                });
-            });
+        React.createElement(
+            'button',
+            { onClick: props.handleShowPrices },
+            Object.keys(props.data)[1]
+        ),
+        props.showPrices && Object.values(props.data)[1].map(function (price) {
+            return React.createElement(
+                'p',
+                { key: price },
+                price
+            );
+        }),
+        React.createElement(
+            'button',
+            { onClick: props.handleShowPrices },
+            Object.keys(props.data)[2]
+        ),
+        props.showPrices && Object.values(props.data)[2].map(function (price) {
+            return React.createElement(
+                'p',
+                { key: price },
+                price
+            );
         })
     );
 };
 
-var Product = function Product(props) {
-    return React.createElement(
-        'div',
-        null,
-        React.createElement(
-            'button',
-            { onClick: props.handleShowPrices },
-            props.productName
-        )
-    );
-};
+//         {
+//             Object.keys(props.data).map((product) => (
+//                 <Product 
+//                     key={product}
+//                     productName={product}
+//                     handleShowPrices={props.handleShowPrices}
+//                 />
+//             ))
+//         }
+//         {
+//             Object.values(props.data).map((productValues) => (
+//                 productValues.map((productValue)=>(
+//                     <Value 
+//                         key={productValue}
+//                         productValue={productValue}
+//                         showPrices={props.showPrices}
+//                     />
+//                 ))
+//             ))
+//         }
 
-var Value = function Value(props) {
-    return React.createElement(
-        'div',
-        null,
-        props.showPrices && React.createElement(
-            'p',
-            null,
-            props.productValue
-        )
-    );
-};
+// const Product = (props) => {
+//     return (
+//         <div>
+//             <button onClick={props.handleShowPrices}>
+//                 {props.productName}
+//             </button>
+//         </div>
+//     );
+// }
+
+// const Value = (props) => {
+//     return (
+//         <div>
+//             {props.showPrices && (
+//                 <p>{props.productValue}</p>
+//             )}
+//         </div>
+//     );
+// }
 
 ReactDOM.render(React.createElement(LineChart, null), document.getElementById('app'));

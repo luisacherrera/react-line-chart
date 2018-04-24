@@ -49,49 +49,68 @@ Header.defaultProps = {
 const Products = (props) => {
     return (
         <div>
-            {
-                Object.keys(props.data).map((product) => (
-                    <Product 
-                        key={product}
-                        productName={product}
-                        handleShowPrices={props.handleShowPrices}
-                    />
-                ))
-            }
-            {
-                Object.values(props.data).map((productValues) => (
-                    productValues.map((productValue)=>(
-                        <Value 
-                            key={productValue}
-                            productValue={productValue}
-                            showPrices={props.showPrices}
-                        />
-                    ))
-                ))
-            }
-        </div>
-    );
-}
-
-const Product = (props) => {
-    return (
-        <div>
             <button onClick={props.handleShowPrices}>
-                {props.productName}
+                {Object.keys(props.data)[0]}
             </button>
+            {props.showPrices && Object.values(props.data)[0].map((price)=>{
+                return <p key={price}>{price}</p>
+            })}
+            <button onClick={props.handleShowPrices}>
+                {Object.keys(props.data)[1]}
+            </button>
+            {props.showPrices && Object.values(props.data)[1].map((price)=>{
+                return <p key={price}>{price}</p>
+            })}
+            <button onClick={props.handleShowPrices}>
+                {Object.keys(props.data)[2]}
+            </button>
+            {props.showPrices && Object.values(props.data)[2].map((price)=>{
+                return <p key={price}>{price}</p>
+            })}
         </div>
     );
 }
 
-const Value = (props) => {
-    return (
-        <div>
-            {props.showPrices && (
-                <p>{props.productValue}</p>
-            )}
-        </div>
-    );
-}
+//         {
+//             Object.keys(props.data).map((product) => (
+//                 <Product 
+//                     key={product}
+//                     productName={product}
+//                     handleShowPrices={props.handleShowPrices}
+//                 />
+//             ))
+//         }
+//         {
+//             Object.values(props.data).map((productValues) => (
+//                 productValues.map((productValue)=>(
+//                     <Value 
+//                         key={productValue}
+//                         productValue={productValue}
+//                         showPrices={props.showPrices}
+//                     />
+//                 ))
+//             ))
+//         }
+
+// const Product = (props) => {
+//     return (
+//         <div>
+//             <button onClick={props.handleShowPrices}>
+//                 {props.productName}
+//             </button>
+//         </div>
+//     );
+// }
+
+// const Value = (props) => {
+//     return (
+//         <div>
+//             {props.showPrices && (
+//                 <p>{props.productValue}</p>
+//             )}
+//         </div>
+//     );
+// }
 
 ReactDOM.render(<LineChart />, document.getElementById('app'));
 
